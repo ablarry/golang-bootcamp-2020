@@ -13,7 +13,6 @@ func Initialize(r *mux.Router) *mux.Router {
 	c := &controller.Pokemon{
 		ParseURL: rest.DecodeURL,
 	}
-
 	api := r.PathPrefix(PATH).Subrouter()
 	api.HandleFunc("", c.GetList).Methods(http.MethodGet)
 	api.HandleFunc("/{id}", c.GetOne).Methods(http.MethodGet)

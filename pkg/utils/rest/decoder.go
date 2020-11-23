@@ -8,7 +8,7 @@ import (
 )
 
 // DecodeURL decodes URL param into i
-func DecodeURL(r *http.Request, i interface{}) error{
+func DecodeURL(r *http.Request, i interface{}) error {
 	decoder := form.NewDecoder()
 	v := r.URL.Query()
 	log.Printf("DecodeURL : url vars : %v : %v : %v", v, mux.Vars(r), r.RequestURI)
@@ -16,7 +16,7 @@ func DecodeURL(r *http.Request, i interface{}) error{
 	for k, x := range mux.Vars(r) {
 		v.Set(":"+k, x)
 	}
-	if err := decoder.Decode(i,v); err != nil {
+	if err := decoder.Decode(i, v); err != nil {
 		return NewError(Payload, "Error decode", err)
 	}
 	return nil

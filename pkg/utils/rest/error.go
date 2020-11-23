@@ -5,16 +5,16 @@ import (
 	"github.com/ablarry/golang-bootcamp-2020/pkg/utils/render"
 	"net/http"
 )
+
 const (
 
 	// Payload error.
 	Payload = "validation.payload"
-
 )
+
 func statusMap() map[string]int {
 	m := map[string]int{
-		Payload:      http.StatusBadRequest,
-
+		Payload: http.StatusBadRequest,
 	}
 	return m
 }
@@ -41,10 +41,8 @@ func (e *Error) Error() string {
 	return e.Detail
 }
 
-
-
 // Fail convenience for REST error responses.
-func Fail(w  http.ResponseWriter, code, message string, err error) {
+func Fail(w http.ResponseWriter, code, message string, err error) {
 	res := &Error{
 		Code:    code,
 		Message: message,
@@ -59,5 +57,8 @@ func Fail(w  http.ResponseWriter, code, message string, err error) {
 		sc = http.StatusInternalServerError
 	}
 	w.WriteHeader(sc)
-	render.Write(w,Err)
+	if err = render.Write(w, Err); err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprint(w, "Error rendering response")
+	}
 }
