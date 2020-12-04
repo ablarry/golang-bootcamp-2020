@@ -1,12 +1,14 @@
 package api
 
 import (
-	"github.com/ablarry/golang-bootcamp-2020/pkg/pokemons/api"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	
+	"github.com/ablarry/golang-bootcamp-2020/pkg/pokemons/api"
+	
+	"github.com/gorilla/mux"
 )
 
 func TestApi(t *testing.T) {
