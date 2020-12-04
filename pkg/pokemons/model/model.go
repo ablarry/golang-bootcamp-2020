@@ -2,7 +2,7 @@ package model
 
 // Pokemon entity
 type Pokemon struct {
-	Id       int64
+	ID       int64
 	Name     string
 	Type     string
 	Category string
