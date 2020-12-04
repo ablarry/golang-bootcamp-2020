@@ -6,7 +6,7 @@ import (
 )
 
 // JsonRender struct is a general wrapper response body
-type JsonRender struct {
+type JSONRender struct {
 	Data interface{} `json:"data"`
 }
 
