@@ -1,0 +1,289 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This API allows to manage information of pokemons.",
+    "version": "1.0.0",
+    "title": "Pokemons",
+    "contact": {
+      "email": "larrazolo.abraham@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "pokemons",
+      "description": "Manage information of pokemons"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/pokemons": {
+      "get": {
+        "tags": [
+          "pokemons"
+        ],
+        "summary": "Get list of pokemons",
+        "description": "",
+        "operationId": "getPokemons",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "size",
+            "required": false,
+            "description": "Limit the size of registers",
+            "default": 10
+          },
+          {
+            "in": "query",
+            "type": "integer",
+            "name": "paginator",
+            "required": false,
+            "description": "Page number",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get pokemons",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pokemon"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Error Server",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "pokemons"
+        ],
+        "summary": "Create a pokemon",
+        "description": "",
+        "operationId": "postPokemons",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Pokemon created succesfully",
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Error Server",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/pokemons/{id}": {
+      "get": {
+        "tags": [
+          "pokemons"
+        ],
+        "summary": "Get specific information of pokemons",
+        "description": "",
+        "operationId": "getPokemon",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of pokemon",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get pokemon",
+            "schema": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Error Server",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "pokemons"
+        ],
+        "summary": "Delete pokemon by id",
+        "description": "",
+        "operationId": "deletePokemon",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Unique identifier of pokemon",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pokemon deleted successful",
+            "schema": {
+              "$ref": "#/definitions/NotBody"
+            }
+          },
+          "204": {
+            "description": "Not Content to delete",
+            "schema": {
+              "$ref": "#/definitions/NotBody"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Error Server",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pokemon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": 25
+        },
+        "name": {
+          "type": "string",
+          "example": "Pikachu"
+        },
+        "type": {
+          "type": "string",
+          "example": "Electric"
+        },
+        "category": {
+          "type": "string",
+          "example": "Mouse"
+        },
+        "weakness": {
+          "type": "string",
+          "example": "Ground"
+        }
+      }
+    },
+    "PokemonUpdate": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Pikachu"
+        },
+        "type": {
+          "type": "string",
+          "example": "Electric"
+        },
+        "category": {
+          "type": "string",
+          "example": "Mouse"
+        },
+        "weakness": {
+          "type": "string",
+          "example": "Ground"
+        }
+      }
+    },
+    "NotBody": {
+      "type": "object",
+      "example": {}
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "example": 50
+        },
+        "message": {
+          "type": "string",
+          "example": "Error caused by.."
+        },
+        "description": {
+          "type": "string",
+          "example": "Error caused by.."
+        }
+      }
+    },
+    "ErrorResponse": {
+      "$ref": "#/definitions/Error",
+      "description": "General error structure API"
+    }
+  }
+}
