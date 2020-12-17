@@ -14,12 +14,9 @@ func Handler(err error) error {
 			return errors.ErrNotFound
 		}
 		pqErr, ok := err.(*pq.Error)
-		if ok {
-			if pqErr.Code == "23505" {
-				return errors.ErrDuplicate
-			}
+		if ok && pqErr.Code == "23505" {
+			err = errors.ErrDuplicate
 		}
-		return err
 	}
-	return nil
-}
+	return err
+}	
