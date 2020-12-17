@@ -42,7 +42,7 @@ Running the API open your browser:
 ```
 http://server:port/swagger
 ```
-## Data Base
+### Data Base
 The information of this API is store in Memory Data Base [po](https://www.h2database.com/javadoc/)
 
 * Schema ddl - 
@@ -66,7 +66,7 @@ INSERT INTO pokemon (id, name, type, category, weakness) VALUES
     (5, 'Charmeleon', 'Fire', 'Lizard', 'Water'),
     (6, 'Charizard', 'Fire', 'Lizard', 'Water');
 ``` 
-
+Configure data connection in /config/app.yaml, review example /config/app.yaml.dist
 
 ### Wizeline requirements:
 Read requirements and delivery dates [Wizeline](REQUIREMENTS.md)
