@@ -44,7 +44,6 @@ func TestGetList(t *testing.T) {
 		assert.Equal(t, tt.ok, err == nil, "Error not expected")
 		if tt.ok {
 			assert.Equal(t, p, repo.PMocks, "Not equal registies")
-
 		}
 
 	}

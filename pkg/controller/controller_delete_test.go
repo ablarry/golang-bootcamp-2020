@@ -26,7 +26,7 @@ func TestDelete(t *testing.T) {
 	}{
 		{
 			"1._ OK: Delete",
-			newRequest("DELETE", "/v1/pokemons/1", ""),
+			newRequest(http.MethodDelete, "/v1/pokemons/1", ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -41,7 +41,7 @@ func TestDelete(t *testing.T) {
 		},
 		{
 			"2._ Not Content: Delete ",
-			newRequest("DELETE", "/v1/pokemons/1", ""),
+			newRequest(http.MethodDelete, "/v1/pokemons/1", ""),
 			http.StatusNoContent,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -56,7 +56,7 @@ func TestDelete(t *testing.T) {
 		},
 		{
 			"3._ Not params: Delete ",
-			newRequest("DELETE", "/v1/pokemons/1", ""),
+			newRequest(http.MethodDelete, "/v1/pokemons/1", ""),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)

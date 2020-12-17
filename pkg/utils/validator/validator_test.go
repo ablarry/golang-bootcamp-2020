@@ -35,6 +35,21 @@ func TestValidate(t *testing.T) {
 			}{},
 			true,
 		},
+		{
+			"4._ Ok Validate integer not required",
+			struct {
+				Size int64 `form:":size"`
+			}{6},
+			true,
+		},
+
+		{
+			"5._ Ok Validate integer not required",
+			struct {
+				Size int64 `form:":size"`
+			}{},
+			true,
+		},
 	}
 
 	for _, tt := range table {

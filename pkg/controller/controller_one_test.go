@@ -29,7 +29,7 @@ func TestOne(t *testing.T) {
 	}{
 		{
 			"1._ OK: GetOne ",
-			newRequest("GET", "/v1/pokemons/1", ""),
+			newRequest(http.MethodGet, "/v1/pokemons/1", ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -43,7 +43,7 @@ func TestOne(t *testing.T) {
 		},
 		{
 			"2._ NotFound: GetOne ",
-			newRequest("GET", "/v1/pokemons/1", ""),
+			newRequest(http.MethodGet, "/v1/pokemons/1", ""),
 			http.StatusNotFound,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -57,7 +57,7 @@ func TestOne(t *testing.T) {
 		},
 		{
 			"3._ Not params : GetOne ",
-			newRequest("GET", "/v1/pokemons/", ""),
+			newRequest(http.MethodGet, "/v1/pokemons/", ""),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)

@@ -29,7 +29,7 @@ func TestList(t *testing.T) {
 	}{
 		{
 			"1._ OK: GetList ",
-			newRequest("GET", "/v1/pokemons", ""),
+			newRequest(http.MethodGet, "/v1/pokemons", ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -45,7 +45,7 @@ func TestList(t *testing.T) {
 		},
 		{
 			"2._ Empty: GetList",
-			newRequest("GET", "/v1/pokemons", ""),
+			newRequest(http.MethodGet, "/v1/pokemons", ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -61,7 +61,7 @@ func TestList(t *testing.T) {
 		},
 		{
 			"3._ InvalidQueryParam: GetList",
-			newRequest("GET", "/v1/pokemons", ""),
+			newRequest(http.MethodGet, "/v1/pokemons", ""),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -69,15 +69,15 @@ func TestList(t *testing.T) {
 				return m
 			},
 			map[string]string{
-				"size":      "ererwerwr210",
-				"Paginator": "0",
+				"size":      "e",
+				"paginator": "e",
 			},
 			[]*model.Pokemon{},
 			false,
 		},
 		{
 			"4._ NotQueryParam: GetList",
-			newRequest("GET", "/v1/pokemons", ""),
+			newRequest(http.MethodGet, "/v1/pokemons", ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)

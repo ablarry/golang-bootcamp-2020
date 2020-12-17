@@ -1,6 +1,6 @@
 # API Pokemon
 
-### Installation
+### Installation:
 
 ```
 git clone https://github.com/ablarry/golang-bootcamp-2020.git
@@ -23,7 +23,7 @@ The path of  file yml which has the configuration of DB and server settings.
 - config /conf/app.yml
 ```
 
-### Project dirs
+### Project dirs:
 
 | Dir | Description |
 |:---|:---|
@@ -42,11 +42,10 @@ Running the API open your browser:
 ```
 http://server:port/swagger
 ```
-### Data Base
+## Data Base
+The information of this API is store in Memory Data Base [po](https://www.h2database.com/javadoc/)
 
-The information of this API is store in Memory Data Base [ElephantSQL - PostgreSQL As a service](https://www.elephantsql.com/)
-
-* Schema ddl 
+* Schema ddl - 
 ``` sql
 CREATE TABLE pokemon (
   id INT PRIMARY KEY,
@@ -56,7 +55,7 @@ CREATE TABLE pokemon (
   weakness VARCHAR(100) DEFAULT NULL
 );
 ``` 
-* Data dml 
+* Data dml - 
 
 ``` sql
 INSERT INTO pokemon (id, name, type, category, weakness) VALUES

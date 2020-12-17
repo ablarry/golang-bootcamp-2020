@@ -30,7 +30,7 @@ func TestCreate(t *testing.T) {
 	}{
 		{
 			"1._ OK: Create",
-			newRequest("POST", "/v1/pokemons", `{ "id": 1,"category": "Seed",  "name": "Bulbasaur", "type": "Grass", "wakness": "Fire" }`),
+			newRequest(http.MethodPost, "/v1/pokemons", `{ "id": 1,"category": "Seed",  "name": "Bulbasaur", "type": "Grass", "wakness": "Fire" }`),
 			http.StatusCreated,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -43,7 +43,7 @@ func TestCreate(t *testing.T) {
 		},
 		{
 			"2._ Register already exists: Create",
-			newRequest("POST", "/v1/pokemons", `{ "id": 1,"category": "Seed",  "name": "Bulbasaur", "type": "Grass", "wakness": "Fire" }`),
+			newRequest(http.MethodPost, "/v1/pokemons", `{ "id": 1,"category": "Seed",  "name": "Bulbasaur", "type": "Grass", "wakness": "Fire" }`),
 			http.StatusUnprocessableEntity,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -56,7 +56,7 @@ func TestCreate(t *testing.T) {
 		},
 		{
 			"3._ Invalid format : Create",
-			newRequest("POST", "/v1/pokemons", ` "id": 1, "wakness": "Fire" `),
+			newRequest(http.MethodPost, "/v1/pokemons", ` "id": 1, "wakness": "Fire" `),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
