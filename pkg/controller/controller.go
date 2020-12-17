@@ -28,7 +28,6 @@ func (c Pokemon) GetList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	rest.JSON(w, pk, http.StatusOK)
-
 }
 
 // GetOne get specific pokemon by id
