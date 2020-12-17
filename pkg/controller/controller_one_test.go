@@ -16,6 +16,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const PokemonEndpoint = "/v1/pokemons/1"
+
 // TestOne test GetOne mocking service in controller
 func TestOne(t *testing.T) {
 	ctrl := gomock.NewController(t)
@@ -29,7 +31,7 @@ func TestOne(t *testing.T) {
 	}{
 		{
 			"1._ OK: GetOne ",
-			newRequest(http.MethodGet, "/v1/pokemons/1", ""),
+			newRequest(http.MethodGet, PokemonEndpoint, ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -43,7 +45,7 @@ func TestOne(t *testing.T) {
 		},
 		{
 			"2._ NotFound: GetOne ",
-			newRequest(http.MethodGet, "/v1/pokemons/1", ""),
+			newRequest(http.MethodGet, PokemonEndpoint, ""),
 			http.StatusNotFound,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -57,7 +59,7 @@ func TestOne(t *testing.T) {
 		},
 		{
 			"3._ Not params : GetOne ",
-			newRequest(http.MethodGet, "/v1/pokemons/", ""),
+			newRequest(http.MethodGet, PokemonEndpoint, ""),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)

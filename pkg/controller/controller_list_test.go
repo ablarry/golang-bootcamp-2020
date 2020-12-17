@@ -15,6 +15,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const PokemonsEndpoint = "/v1/pokemons"
+
 // TestList test GetList  mocking service in controller
 func TestList(t *testing.T) {
 	ctrl := gomock.NewController(t)
@@ -29,7 +31,7 @@ func TestList(t *testing.T) {
 	}{
 		{
 			"1._ OK: GetList ",
-			newRequest(http.MethodGet, "/v1/pokemons", ""),
+			newRequest(http.MethodGet, PokemonsEndpoint, ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -45,7 +47,7 @@ func TestList(t *testing.T) {
 		},
 		{
 			"2._ Empty: GetList",
-			newRequest(http.MethodGet, "/v1/pokemons", ""),
+			newRequest(http.MethodGet, PokemonsEndpoint, ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -61,7 +63,7 @@ func TestList(t *testing.T) {
 		},
 		{
 			"3._ InvalidQueryParam: GetList",
-			newRequest(http.MethodGet, "/v1/pokemons", ""),
+			newRequest(http.MethodGet, PokemonsEndpoint, ""),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
@@ -77,7 +79,7 @@ func TestList(t *testing.T) {
 		},
 		{
 			"4._ NotQueryParam: GetList",
-			newRequest(http.MethodGet, "/v1/pokemons", ""),
+			newRequest(http.MethodGet, PokemonsEndpoint, ""),
 			http.StatusOK,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
