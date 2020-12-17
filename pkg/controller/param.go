@@ -7,6 +7,6 @@ type ParamsOne struct {
 
 // ParamsList is a struct with properties required in URL
 type ParamsList struct {
-	Size      int64 `form:":size" validate:"numeric"`
-	Paginator int64 `form:":paginator" validate:"numeric"`
+	Size      int64 `form:"size" validate:"numeric"`
+	Paginator int64 `form:"paginator" validate:"numeric"`
 }

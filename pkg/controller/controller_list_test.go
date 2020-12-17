@@ -54,26 +54,20 @@ func TestList(t *testing.T) {
 				m.EXPECT().GetList(gomock.Any(), gomock.Any()).Return([]*model.Pokemon{}, nil).AnyTimes()
 				return m
 			},
-			map[string]string{
-				"size":      "10",
-				"Paginator": "0",
-			},
+			map[string]string{},
 			[]*model.Pokemon{},
 			true,
 		},
 		{
 			"3._ InvalidQueryParam: GetList",
-			newRequest(http.MethodGet, PokemonsEndpoint, ""),
+			newRequest(http.MethodGet, PokemonsEndpoint+"?size=e&paginator=5", ""),
 			http.StatusBadRequest,
 			func(c *gomock.Controller) *service.MockService {
 				m := service.NewMockService(ctrl)
 				m.EXPECT().GetList(gomock.Any(), gomock.Any()).Return([]*model.Pokemon{}, nil).AnyTimes()
 				return m
 			},
-			map[string]string{
-				"size":      "e",
-				"paginator": "e",
-			},
+			map[string]string{},
 			[]*model.Pokemon{},
 			false,
 		},
