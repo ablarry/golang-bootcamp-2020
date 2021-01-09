@@ -1,0 +1,22 @@
+server:
+ port:
+  ""
+db:
+    host:
+
+    port:
+        5432
+    database:
+
+    user:
+
+    password:
+
+    sslmode:
+        disable
+    maxIdleConns:
+        5 
+    maxOpenConns:
+        5
+    driver:
+        postgres
